@@ -15,24 +15,24 @@
 <body>
 <canvas id="gameCanvas" width="1000" height="650"></canvas>
 <script>
-	var scoreInit = 0;
-	var frameInit = 0;
-	var gravity = 2;
-	var jumpForce = -45;
-	var radius = 20;
-	var sizeX = 50;
-	var pipeWidth = 65;
-	var pipeYDivider = 2;
-	var scoreTextLeft = 50;
-	var scoreTextTop = 50;
-	var notifTextFont = '48px Arial';
-	var noticeTextFill = 'black';
-	var jumpKey = 'Space';
-	var avatarColor = 'yellow';
-	var pipeColor = 'pink';
-	var gameOverText = 'Game Over';
-	var scoreText = 'Score: ';
-	var refreshText = 'Press F5 to restart';
+    var scoreInit = 0;
+    var frameInit = 0;
+    var gravity = 2;
+    var jumpForce = -45;
+    var radius = 20;
+    var sizeX = 50;
+    var pipeWidth = 65;
+    var pipeYDivider = 2;
+    var scoreTextLeft = 50;
+    var scoreTextTop = 50;
+    var notifTextFont = '48px Arial';
+    var noticeTextFill = 'black';
+    var jumpKey = 'Space';
+    var avatarColor = 'yellow';
+    var pipeColor = 'pink';
+    var gameOverText = 'Game Over';
+    var scoreText = 'Score: ';
+    var refreshText = 'Press F5 to restart';
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     const bird = {
