@@ -15,36 +15,38 @@
 <body>
 <canvas id="gameCanvas" width="1000" height="650"></canvas>
 <script>
-    var scoreInit = 0;
-    var frameInit = 0;
-    var gravity = 2;
-    var jumpForce = -45;
-    var radius = 20;
-    var sizeX = 50;
-    var pipeWidth = 65;
-    var pipeYDivider = 2;
-    var scoreTextLeft = 50;
-    var scoreTextTop = 50;
-    var notifTextFont = '48px Arial';
-    var noticeTextFill = 'black';
-    var jumpKey = 'Space';
-    var avatarColor = 'yellow';
-    var pipeColor = 'pink';
-    var gameOverText = 'Game Over';
-    var scoreText = 'Score: ';
-    var refreshText = 'Press F5 to restart';
+    var config = {
+          scoreInit: 0,
+          frameInit: 0,
+          gravity: 2,
+          jumpForce: -45,
+          radius: 20,
+          sizeX: 50,
+          pipeWidth: 65,
+          pipeYDivider: 2,
+          scoreTextLeft: 50,
+          scoreTextTop: 50,
+          notifTextFont: '48px Arial',
+          noticeTextFill: 'black',
+          jumpKey: 'Space',
+          avatarColor: 'yellow',
+          pipeColor: 'pink',
+          gameOverText: 'Game Over',
+          scoreText: 'Score: ',
+          refreshText: 'Press F5 to restart'
+    }
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     const bird = {
-        x: sizeX,
-        y: canvas.height / pipeYDivider,
-        radius: radius,
-        gravity: gravity,
-        jumpForce: jumpForce,
+        x: config.sizeX,
+        y: canvas.height / config.pipeYDivider,
+        radius: config.radius,
+        gravity: config.gravity,
+        jumpForce: config.jumpForce,
         draw: function() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = avatarColor;
+            ctx.fillStyle = config.avatarColor;
             ctx.fill();
             ctx.closePath();
         },
@@ -63,15 +65,15 @@
     };
 
     let pipes = [];
-    let score = scoreInit;
+    let score = config.scoreInit;
     let gameOver = false;
 
     function Pipe() {
         this.x = canvas.width;
         this.y = Math.random() * (canvas.height - 400) + 200;
-        this.width = pipeWidth;
+        this.width = config.pipeWidth;
         this.draw = function() {
-            ctx.fillStyle = pipeColor;
+            ctx.fillStyle = config.pipeColor;
             ctx.fillRect(this.x, 0, this.width, this.y);
             ctx.fillRect(this.x, this.y + 150, this.width, canvas.height - (this.y + 100));
         };
@@ -81,7 +83,7 @@
     }
 
     document.addEventListener('keydown', event => {
-        if (event.code === jumpKey) {
+        if (event.code === config.jumpKey) {
             bird.jump();
         }
     });
@@ -109,21 +111,21 @@
             if (frame % 150 === 0) {
                 pipes.push(new Pipe());
             }
-            ctx.fillStyle = noticeTextFill;
-            ctx.font = notifTextFont;
-            ctx.fillText(scoreText + score, scoreTextLeft, scoreTextLeft);
+            ctx.fillStyle = config.noticeTextFill;
+            ctx.font = config.notifTextFont;
+            ctx.fillText(config.scoreText + score, config.scoreTextLeft, config.scoreTextLeft);
             frame++;
             requestAnimationFrame(gameLoop);
         } else {
-            ctx.fillStyle = noticeTextFill;
-            ctx.font = notifTextFont;
-            ctx.fillText(scoreText + score, canvas.width / 2 - 100, canvas.height / 2);
-            ctx.fillText(gameOverText, canvas.width / 2 - 150, canvas.height / 2 + 50);
-            ctx.fillText(refreshText, canvas.width / 2 - 200, canvas.height / 2 + 100);
+            ctx.fillStyle = config.noticeTextFill;
+            ctx.font = config.notifTextFont;
+            ctx.fillText(config.scoreText + score, canvas.width / 2 - 100, canvas.height / 2);
+            ctx.fillText(config.gameOverText, canvas.width / 2 - 150, canvas.height / 2 + 50);
+            ctx.fillText(config.refreshText, canvas.width / 2 - 200, canvas.height / 2 + 100);
         }
     }
 
-    let frame = frameInit;
+    let frame = config.frameInit;
     gameLoop();
 </script>
 </body>
